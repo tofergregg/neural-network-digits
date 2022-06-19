@@ -1,3 +1,5 @@
+const CGIBIN_PATH = "../cgi-bin/digits/"
+
 var canvas, ctx, flag = false,
     prevX = 0,
     currX = 0,
@@ -67,7 +69,7 @@ function erase() {
 
 function postStats(stats) {
     (async () => {
-        const rawResponse = await fetch('../cgi-bin/digits/postModelResults.py', {
+        const rawResponse = await fetch(CGIBIN_PATH + 'postModelResults.py', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -143,7 +145,7 @@ function uuidv4() {
 function sendToServer(imgsrc) {
     window.lastImgUuid = uuidv4();
     (async () => {
-        const rawResponse = await fetch('../cgi-bin/digits/postImage.py', {
+        const rawResponse = await fetch(CGIBIN_PATH + 'postImage.py', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -275,7 +277,7 @@ function findxy(res, e) {
 
 function getCorrectPredictions() {
     (async () => {
-        const rawResponse = await fetch('../cgi-bin/digits/getStats.py', {
+        const rawResponse = await fetch(CGIBIN_PATH + 'getStats.py', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
