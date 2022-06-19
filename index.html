@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+body {
+    font: normal 10px Verdana, Arial, sans-serif;
+}
+#neuralnet {
+    /* Prevent nearby text being highlighted when accidentally dragging mouse outside confines of the canvas */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#can {
+    float:left;
+    border:2px solid;
+    border-radius:4px;
+    position:relative; /* Necessary for correct mouse co-ords in Firefox */
+}
+
+</style>
+</head>
+<script src="js/functions.js"></script>
+<body onload="init()">
+<div id="neuralnet">
+    <h1>Welcome to the Digit Predictor!</h1>
+    <h2>This predictor uses a neural network based on the
+        <a href="http://yann.lecun.com/exdb/mnist/">MNIST Database of Handwritten Digits</a> to predict a digit drawn into the box below.</h2>
+    <span style="display: inline-block; width: 200px;">
+        Please draw a digit (0, 1, 2, 3, 4, 5, 6, 7, 8, or 9) in the box below.<br>
+    </span>
+    <div style="display:flex;align-items:center;">
+        <canvas id="can" width="80" height="80"></canvas>
+        <span id="guess" style="display: inline-block; width: 100px; padding-left: 20px">
+        </span>
+    <div id="after_buttons" style="display:flex;align-items:center;visibility:hidden;">
+        <input type="button" value="Correct" id="correct_btn" size="30" onclick="correct()">&nbsp; 
+        <input type="button" value="Incorrect" id="incorrect_btn" size="30" onclick="incorrect()">
+        &nbsp;Clear Digit<input type="checkbox" id="clear_chk" size="30" checked>
+    </div>
+
+    </div>
+    <br>
+    <input type="button" value="Decode Digit" id="decode_btn" size="30" onclick="guess()">
+    <input type="button" value="Clear" id="clr_btn" size="23" onclick="erase()">
+    
+    <p>
+    <span style="display: inline-block; width: 200px;">
+        Try to draw the digit so that it fits in the box, like this:
+    </span>
+    <br>
+    <img src="img/nine-example.png" width="84px"><br>
+    <br>
+    <span style="display: inline-block; width: 200px;">
+        So far, the model has made <span id="num_correct">?</span> correct predictions out of a total of <span id="total_guesses">?</span> attempts, for a correct percentage of <span id="perc_correct">?</span>%.
+</span>
+</div>
+</body>
+</html>
