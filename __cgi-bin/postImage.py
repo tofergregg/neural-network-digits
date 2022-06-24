@@ -111,7 +111,7 @@ def center_image(pixels, orig_size, new_size, com):
         for x in range(new_size):
             orig_x = x - x_shift
             orig_y = y - y_shift
-            if 0 <= orig_x < orig_size and 0 <= orig_y < orig_size:
+            if 0 <= orig_x < new_size and 0 <= orig_y < new_size:
                 new_pixels[y * new_size + x] = pixels[orig_y * new_size + orig_x]
     return new_pixels
 
